@@ -38,6 +38,9 @@
             <li>
                 <a class="nav-link" href="/lsapp2/public/posts">Blog <span class="sr-only">(current)</span></a>
             </li>
+            <li>
+                <a class="nav-link" href="/lsapp2/public/posts/create">Create Post <span class="sr-only">(current)</span></a>
+            </li>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="#">Action</a>
                 <a class="dropdown-item" href="#">Another action</a>
