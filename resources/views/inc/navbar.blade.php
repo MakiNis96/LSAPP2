@@ -30,13 +30,13 @@
               <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/lsapp/public/about">About</a>
+              <a class="nav-link" href="/lsapp2/public/about">About</a>
             </li>
             <li>
-                <a class="nav-link" href="/lsapp/public/services">Services <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="/lsapp2/public/services">Services <span class="sr-only">(current)</span></a>
             </li>
             <li>
-                <a class="nav-link" href="/lsapp/public/posts">Blog <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="/lsapp2/public/posts">Blog <span class="sr-only">(current)</span></a>
             </li>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="#">Action</a>
