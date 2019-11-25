@@ -11,19 +11,19 @@
               <!-- Left Side Of Navbar -->
               <ul class="navbar-nav mr-auto">
       <li>
-        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="/home">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/lsapp2/public/about">About</a>
+        <a class="nav-link" href="/about">About</a>
       </li>
       <li>
-          <a class="nav-link" href="/lsapp2/public/services">Services <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="/services">Services <span class="sr-only">(current)</span></a>
       </li>
       <li>
-          <a class="nav-link" href="/lsapp2/public/posts">Blog <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="/posts">Blog <span class="sr-only">(current)</span></a>
       </li>
       <li>
-          <a class="nav-link" href="/lsapp2/public/posts/create">Create Post <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="/posts/create">Create Post <span class="sr-only">(current)</span></a>
       </li>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="#">Action</a>
