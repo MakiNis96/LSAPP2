@@ -13,4 +13,8 @@ class Post extends Model
     public $primaryKey = 'id';
     public $timestamps = true; //po defaultu je true, to znaci da cemo imati created_at i updated_at, to mozemo i da zabranimo postavljanjem na false
     
+    //dodajemo vezu - jedan post ima jednog usera (pripada jendom useru)
+    public function user(){
+        return $this->belongsTo('App\User');
+    }
 }

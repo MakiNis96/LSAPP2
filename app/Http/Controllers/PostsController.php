@@ -21,6 +21,10 @@ class PostsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()                //ovim zabranjujemo pristup nelogovanim korisnicima
+    {
+        $this->middleware('auth', ['except' => ['index', 'show']]);  //u nizu navodimo view-ove kojima mogu da pristupe i nelogovani korisnici
+    }
     public function index() // ovom pristupamo sa /posts (bez index)
     {
         //sada mozemo da koristimo fje nad modelom, koristicemo Eloquent za pisanje upita
@@ -77,7 +81,8 @@ class PostsController extends Controller
         $post = new Post;
         $post->title = $request->input('title'); //uzimamo iz forme podatke
         $post->body = $request->input('body');
-        
+        $user_id = auth()->user()->id;
+        $post->user_id = $user_id;
         $post->cover_image = $fileNameToStore;
         $post->save();
         return redirect('/posts')->with('success', 'Post created'); //redirektujemo se i prenosimo parametar success koji se koristi u validaciji (messages.blade.php)
@@ -166,6 +171,11 @@ class PostsController extends Controller
     public function destroy($id)
     {
         $post = Post::find($id);
+
+        if(auth()->user()->id !==$post->user_id){
+            return redirect('/posts')->with('error', 'Unauthorized Page');
+        }
+        
         $post->delete();
         return redirect('/posts')->with('success', 'Post deleted');
     }

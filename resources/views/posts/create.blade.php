@@ -24,7 +24,7 @@
 
 {{Form::submit('Submit', ['class'=>'btn btn-primary'])}}
 
-{!! Form::close() !!}
+{!! Form::close() !!} 
 <!-- <form method="post" action="{{ route('posts.store') }}"> -->
 
         <!-- <div class="form-group">

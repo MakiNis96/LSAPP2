@@ -38,4 +38,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // veza: korisnik ima vise postova - 1:vise 
+    public function posts(){
+        return $this->hasMany('App\Post');
+    }
 }
