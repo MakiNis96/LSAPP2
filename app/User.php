@@ -43,4 +43,9 @@ class User extends Authenticatable
     public function posts(){
         return $this->hasMany('App\Post');
     }
+
+    //jedan korisnik moze da ima vise komentara
+    public function comments(){
+        return $this->hasMany('App\Comment');
+    }
 }

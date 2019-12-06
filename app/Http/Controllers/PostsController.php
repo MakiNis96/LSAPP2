@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post; // unosenje modela namespace , naziv Post, ovo radimo da bismo mogli da pisemo fje nad modelom
+use App\Comment;
 use DB; //za pisanje SQL upita, bez Eloquent-a
 // ovaj kontroler kreiramo naredbom: php artisan make:controller PostsController --resource
 // dodajemo funkcije za CRUD
@@ -98,7 +99,8 @@ class PostsController extends Controller
     public function show($id)  // parametar id posta koji prikazujemo, okida se na npr. /posts/1
     {
         $post = Post::find($id); //pronalazi post sa tim idjem
-        return view('posts.show')->with('post', $post);
+        $comments = Comment::where('post_id', $id)->get();
+        return view('posts.show')->with('post', $post)->with('comments',$comments);
     }
 
     /**
@@ -175,7 +177,11 @@ class PostsController extends Controller
         if(auth()->user()->id !==$post->user_id){
             return redirect('/posts')->with('error', 'Unauthorized Page');
         }
-        
+        $comments = Comment::where('post_id',$id)->get();
+        foreach($comments as $comment){
+            $comment->delete();
+        }
+
         $post->delete();
         return redirect('/posts')->with('success', 'Post deleted');
     }

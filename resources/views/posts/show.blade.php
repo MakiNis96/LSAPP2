@@ -40,4 +40,35 @@
             {!!Form::close()!!}
         @endif
     @endif
+
+    {{-- deo za dodavanje komentara --}}
+    <a class="btn btn-default" href="/comments/create/{{$post->id}}">Create Comment </a> 
+
+    <h1>Comments</h1>
+    @if(count($comments) > 0)
+@foreach($comments as $comment)
+
+<div class="well">
+    <div class="row">
+        <div class="col-md-8 col-sm-8">
+        <p>{{$comment->text}}</p>
+        
+            {{--<h3><a href="posts/{{$post->id}}">{{$post->title}}</a></h3> --}}
+            <small>Written on {{$comment->created_at}} by {{$comment->user['name']}} </small>
+            
+            @if($comment->user_id == Auth::user()->id)
+            {!!Form::open(['action' => ['CommentsController@destroy', $comment['id']], 'method' => 'POST', 'class' => 'pull-right'])!!}
+                                    {{Form::hidden('_method', 'DELETE')}}
+                                    {{Form::submit('Delete', ['class' => 'btn btn-danger'])}}
+                                {!!Form::close()!!}
+            @endif
+        </div>
+    </div>
+</div>
+<br/>
+@endforeach
+{{--{{$posts->links()}}--}}
+@else 
+<p>No comments!</p>
+@endif
 @endsection

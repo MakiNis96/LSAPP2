@@ -37,10 +37,13 @@ Route::get('/', 'PagesController@index');
 
 Route::get('/about', 'PagesController@about');
 Route::get('/services', 'PagesController@services');
+Route::get('/comments/create/{post_id}', 'CommentsController@create');
+
 
 // da u terminalu vidimo sve rute koje imamo kucamo: php artisan route:list
 
 Route::resource('posts', 'PostsController'); // ovo automatski za nas kreira rute za sve funkcije u PostsController
+Route::resource('comments', 'CommentsController');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
