@@ -42,8 +42,9 @@
 <div class="well">
     <div class="row">
         <h3 class="col-md-10 col-sm-10" style="position:center">Comments</h3>
+        @if(!Auth::guest())
         <a class="btn btn-primary col-md-2 col-sm-2" href="/comments/create/{{$post->id}}" style="float:right">Add Comment </a> 
- 
+        @endif
     </div>
 </div>
 @if(count($comments) > 0)

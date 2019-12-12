@@ -29,7 +29,7 @@ Route::get('/users/{id}/{name}', function ($id,$name) {   //dinamicka ruta, kada
 });   //promenljive sa $, konkatenacija sa .
 
 //ruta koja poziva funkciju kontrolera, umesto callback funckije navodimo naziv kontrolera @ naziv funkcije
-Route::get('/', 'PagesController@index');
+Route::get('/', 'PagesController@index')->name('welcome');
 
 //Route::get('/about', function () {   //ruta za novi view koji smo napravili, nalazi se u folderu pages a zove se about
 //    return view('pages.about');   //umesto ove sintakse sa tackom moze i pages/about
@@ -37,7 +37,7 @@ Route::get('/', 'PagesController@index');
 
 Route::get('/about', 'PagesController@about');
 Route::get('/services', 'PagesController@services');
-Route::get('/comments/create/{post_id}', 'CommentsController@create');
+Route::get('/comments/create/{post_id}', 'CommentsController@create')->middleware('auth');
 Route::get('/posts/{post_id}/like', 'PostsController@like');
 
 
