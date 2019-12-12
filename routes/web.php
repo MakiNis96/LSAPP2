@@ -38,6 +38,7 @@ Route::get('/', 'PagesController@index');
 Route::get('/about', 'PagesController@about');
 Route::get('/services', 'PagesController@services');
 Route::get('/comments/create/{post_id}', 'CommentsController@create');
+Route::get('/posts/{post_id}/like', 'PostsController@like');
 
 
 // da u terminalu vidimo sve rute koje imamo kucamo: php artisan route:list

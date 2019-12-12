@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage; //da bi imao pristum file sistemu
 use App\Post; // unosenje modela namespace , naziv Post, ovo radimo da bismo mogli da pisemo fje nad modelom
 use App\Comment;
+use App\Like;
 use DB; //za pisanje SQL upita, bez Eloquent-a
 // ovaj kontroler kreiramo naredbom: php artisan make:controller PostsController --resource
 // dodajemo funkcije za CRUD
@@ -34,6 +36,8 @@ class PostsController extends Controller
         //$post = Post::where('title', 'Post two')->get(); //za filtiranje po title
         //$posts = Post::orderBy('title','desc')->take(1)->get(); // ogranicenje broja rezultata
         $posts = Post::orderBy('created_at','desc')->paginate(10); //po deset rezultata na stranici
+
+        
         //$posts = DB::select('SELECT * FROM posts');
         // return view('posts.index'); //vraca taj view
         return view('posts.index')->with('posts', $posts); // prenosimo taj parametar u view, i tamo ga koristimo
@@ -162,6 +166,41 @@ class PostsController extends Controller
         }
         $post->save();
         return redirect('/posts')->with('success', 'Post updated');
+    }
+
+    
+    /**
+     * like the post 
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function like( $id)
+    {   
+        $user_id = auth()->user()->id;
+        $post_id = $id;
+
+        $l = Like::where([
+            ['user_id', '=', $user_id],
+            ['post_id', '=', $post_id]
+        ]);
+        
+        if($l->count() == 1)
+        {  
+            $l->delete();
+                   
+        }
+        else
+        {
+            $like = new Like;            
+            $like->user_id = $user_id;        
+            $like->post_id = $post_id;
+
+            $like->save();   
+        }  
+
+        return redirect('/posts');
     }
 
     /**

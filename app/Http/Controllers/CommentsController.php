@@ -52,7 +52,7 @@ class CommentsController extends Controller
         $comment->save();
         $post = Post::find($post_id);
         $comments = Comment::where('post_id', $post_id)->get();
-        return view('posts.show')->with('post', $post)->with('comments',$comments);
+        return redirect('posts/'.$post_id); // redirekcija na isti post
     }
 
     /**

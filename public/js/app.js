@@ -1,3 +1,6 @@
+
+
+
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -36992,3 +36995,12 @@ module.exports = __webpack_require__(/*! C:\xampp\htdocs\lsapp\resources\sass\ap
 /***/ })
 
 /******/ });
+
+
+$('#fileee').change(function(){
+  $in=$(this);
+  //$in.next().html($in.val());
+$('#filename').text($in.val());
+})
+
+
