@@ -19,7 +19,18 @@
                     <h2>{{$post->likes->count()}} likes</h2> 
                 @endif 
                 @if(!Auth::guest())
+                @php $userLike = 0; @endphp
+                @foreach($post->likes as $like)
+                    @if($like->user->id == Auth::user()->id)
+                        @php $userLike = 1; @endphp
+                    @endif
+                @endforeach
+                @if($userLike == 0)
                 <a href="posts/{{$post->id}}/like" class="btn btn-primary ">Like</a>
+                @else
+                <a href="posts/{{$post->id}}/like" class="btn btn-primary ">Dislike</a>
+                @endif
+            
                 @endif
 
                 {{-- pozeljno je koristiti <a> umesto dugmeta jer link moze da sadrzi celu putanju a dugme samo nadovezuje na trenutno ime kontrolera --}}
